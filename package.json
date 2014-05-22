@@ -1,0 +1,26 @@
+{
+  "name": "parse-dir",
+  "version": "0.0.0",
+  "description": "Node lib to recursively read the files in a directory and return their contents",
+  "main": "./lib/parse-dir",
+  "scripts": {
+    "test": "mocha test --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firstandthird/parse-dir.git"
+  },
+  "author": "First+Third",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/firstandthird/parse-dir/issues"
+  },
+  "homepage": "https://github.com/firstandthird/parse-dir",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "load-grunt-config": "^0.9.2",
+    "grunt-mocha-test": "^0.10.2"
+  }
+}
