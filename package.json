@@ -22,5 +22,9 @@
     "grunt-contrib-watch": "^0.6.1",
     "load-grunt-config": "^0.9.2",
     "grunt-mocha-test": "^0.10.2"
+  },
+  "dependencies": {
+    "glob": "^4.0.0",
+    "async": "^0.9.0"
   }
 }

@@ -16,4 +16,4 @@ mochaTest:
   options:
     reporter: spec
     clearRequireCache: true
-  src: 'test/**/*.js'
+  src: 'test/*.js'
