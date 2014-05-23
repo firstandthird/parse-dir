@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "glob": "^4.0.0",
-    "async": "^0.9.0"
+    "async": "^0.9.0",
+    "js-yaml": "^3.0.2"
   }
 }

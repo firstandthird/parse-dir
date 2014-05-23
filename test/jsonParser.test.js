@@ -7,17 +7,35 @@ var fixture = 'test/fixture/json/';
 describe('json', function() {
   it('should be parsed', function(done) {
     parseDir(fixture + 'users.json', function(err, data) {
-      assert(data.length === 1);
       assert(data[0].parsed);
       done();
     });
   });
 
-  it('should contain file information', function(done) {
+  it('should contain filepath', function(done) {
     parseDir(fixture + 'users.json', function(err, data) {
       assert(data[0].filepath.indexOf(fixture + 'users.json') !== -1);
+      done();
+    });
+  });
+
+  it('should contain filename', function(done) {
+    parseDir(fixture + 'users.json', function(err, data) {
       assert(data[0].filename === 'users.json');
+      done();
+    });
+  });
+
+  it('should contain basename', function(done) {
+    parseDir(fixture + 'users.json', function(err, data) {
       assert(data[0].basename === 'users');
+      assert(data[0].extension === '.json');
+      done();
+    });
+  });
+
+  it('should contain extension', function(done) {
+    parseDir(fixture + 'users.json', function(err, data) {
       assert(data[0].extension === '.json');
       done();
     });
