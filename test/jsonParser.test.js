@@ -29,7 +29,6 @@ describe('json', function() {
   it('should contain basename', function(done) {
     parseDir(fixture + 'users.json', function(err, data) {
       assert(data[0].basename === 'users');
-      assert(data[0].extension === '.json');
       done();
     });
   });

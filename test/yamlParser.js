@@ -29,7 +29,6 @@ describe('yaml', function() {
   it('should contain basename', function(done) {
     parseDir(fixture + 'users.yaml', function(err, data) {
       assert(data[0].basename === 'users');
-      assert(data[0].extension === '.yaml');
       done();
     });
   });
