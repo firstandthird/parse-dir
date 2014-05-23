@@ -2,7 +2,7 @@ var parseDir = require('../lib/parse-dir');
 var assert = require('assert');
 var fs = require('fs');
 
-var fixture = 'test/fixture/';
+var fixture = 'test/fixture/json/';
 
 describe('json', function() {
   it('should be parsed', function(done) {
