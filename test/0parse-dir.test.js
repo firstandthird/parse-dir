@@ -12,4 +12,30 @@ describe('parse-dir', function() {
       done();
     });
   });
+
+  describe('directories', function() {
+    it('should return isDirectory', function(done) {
+      parseDir('test/fixture/directories/**/*', function(err, data) {
+        assert(data[0].isDirectory);
+        assert.equal(data[1].isDirectory, false);
+        done();
+      });
+    });
+  });
+
+  describe('unknown files', function() {
+    it('should return parsed = false for unknown files', function(done) {
+      parseDir('test/fixture/unknown/**/*', function(err, data) {
+        assert.equal(data[0].parsed, false);
+        done();
+      });
+    });
+
+    it('should return raw == contents if not parsed', function(done) {
+      parseDir('test/fixture/unknown/**/*', function(err, data) {
+        assert.equal(data[0].contents, data[0].raw);
+        done();
+      });
+    });
+  });
 });
