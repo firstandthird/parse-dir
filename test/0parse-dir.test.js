@@ -13,6 +13,15 @@ describe('parse-dir', function() {
     });
   });
 
+  it('should return relative paths', function(done) {
+    parseDir('test/fixture/json/*.json', function(err, data) {
+      assert.equal(data.length, 2);
+      assert(data[0].relativePath, 'test/fixture/json/malformed.json');
+      assert(data[1].relativePath, 'test/fixture/json/users.json');
+      done();
+    });
+  });
+
   describe('directories', function() {
     it('should return isDirectory', function(done) {
       parseDir('test/fixture/directories/**/*', function(err, data) {
