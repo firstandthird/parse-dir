@@ -1,4 +1,4 @@
-var parseDir = require('../lib/parse-dir');
+var parseDir = require('../lib/parse-dir').async;
 var assert = require('assert');
 var fs = require('fs');
 
