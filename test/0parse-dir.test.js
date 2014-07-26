@@ -11,6 +11,11 @@ describe('parse-dir', function() {
       assert(data.length > 1);
       done();
     });
+
+  });
+  it('Should handle synchronous as well', function () {
+    var result = parseDir.sync('test/fixture/**/*');
+    assert(result.length > 1);
   });
 
   it('should return relative paths', function(done) {

@@ -11,6 +11,13 @@ Node lib to recursively read the files in a directory and return their contents.
 
 ```parseDir(glob, callback);```
 
+Or, if you prefer to make it synchronous:
+
+```javascript
+var result = parseDir(glob);
+var otherResult = parseDir.sync(otherGlob);
+```
+
 ### Example
 
 ```javascript
