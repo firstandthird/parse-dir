@@ -1,5 +1,11 @@
 
-0.0.1 / 2014-06-02 
+0.0.2 / 2014-07-26
+==================
+
+  * Updating sync way and adding some doc
+  * Adding Sync support
+
+0.0.1 / 2014-06-02
 ==================
 
   * Added coffee and livescript.

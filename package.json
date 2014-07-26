@@ -1,11 +1,8 @@
 {
   "name": "parse-dir",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Node lib to recursively read the files in a directory and return their contents",
   "main": "./lib/parse-dir",
-  "scripts": {
-    "test": "mocha test --recursive"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/firstandthird/parse-dir.git"
