@@ -1,4 +1,12 @@
 
+0.1.0 / 2016-02-15
+==================
+
+  * fixed linting errors
+  * added linting
+  * Adding yml support
+  * Fixing context not being set properly
+
 0.0.2 / 2014-07-26
 ==================
 
