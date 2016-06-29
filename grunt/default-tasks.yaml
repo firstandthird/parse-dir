@@ -1,9 +1,0 @@
-aliases:
-  - scripts
-watch:
-  files:
-    - grunt/*
-    - Gruntfile.js
-    - package.json
-  tasks:
-    - default
