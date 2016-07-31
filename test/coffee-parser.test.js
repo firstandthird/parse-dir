@@ -1,6 +1,8 @@
 const parseDir = require('../lib/parse-dir');
 const assert = require('assert');
 const fs = require('fs');
+// registers coffeescript with 'require'
+require('coffee-script/register');
 
 const fixture = 'test/fixture/coffeescript/';
 
