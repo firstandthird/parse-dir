@@ -19,13 +19,10 @@
   "homepage": "https://github.com/firstandthird/parse-dir",
   "devDependencies": {
     "chai": "^3.5.0",
-    "eslint": "^2.9.0",
-    "eslint-config-airbnb": "^8.0.0",
-    "eslint-config-firstandthird": "^2.0.0",
-    "eslint-plugin-import": "^1.5.0",
-    "eslint-plugin-jsx-a11y": "^1.0.2",
-    "eslint-plugin-react": "^5.1.1",
     "coffee-script": "^1.10.0",
+    "eslint": "^3.9.1",
+    "eslint-config-firstandthird": "^3.0.2",
+    "eslint-plugin-import": "^2.1.0",
     "mocha": "^2.5.3"
   },
   "dependencies": {
