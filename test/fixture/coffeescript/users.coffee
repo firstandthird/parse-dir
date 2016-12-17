@@ -1,7 +1,5 @@
-(->
-  module.exports = [
-    name: "John"
-    email: "john@example.com"
-  ]
-  return
-)()
+module.exports = [
+  name: "John"
+  email: "john@example.com"
+]
+return

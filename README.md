@@ -1,4 +1,6 @@
 parse-dir
+[![Build Status](https://travis-ci.org/firstandthird/parse-dir.svg?branch=master)](https://travis-ci.org/firstandthird/parse-dir)
+
 =========
 
 Node lib to recursively read the files in a directory and return their contents.
