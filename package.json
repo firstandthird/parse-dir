@@ -23,11 +23,11 @@
     "eslint": "^3.9.1",
     "eslint-config-firstandthird": "^3.0.2",
     "eslint-plugin-import": "^2.1.0",
-    "mocha": "^2.5.3"
+    "mocha": "^3.2.0"
   },
   "dependencies": {
     "async": "^2.1.4",
-    "glob": "^4.0.0",
+    "glob": "^7.1.1",
     "js-yaml": "^3.0.2"
   }
 }
