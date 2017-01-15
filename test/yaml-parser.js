@@ -56,7 +56,7 @@ test('yaml should return parsed output', (t) => {
 
 test('yaml should handle malformed yaml', (t) => {
   t.plan(1);
-  parseDir(fixture + 'malformed.yaml', (err, data) => {
+  parseDir(`${fixture}malformed.yaml`, (err, data) => {
     t.equal(!data[0].parsed, true);
   });
 });
