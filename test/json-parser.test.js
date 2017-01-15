@@ -1,63 +1,62 @@
-var parseDir = require('../lib/parse-dir');
-var assert = require('assert');
-var fs = require('fs');
+'use strict';
+const parseDir = require('../lib/parse-dir');
+const test = require('tape');
+const fs = require('fs');
 
-var fixture = 'test/fixture/json/';
+const fixture = 'test/fixture/json/';
 
-describe('json', function() {
-  it('should be parsed', function(done) {
-    parseDir(fixture + 'users.json', function(err, data) {
-      assert(data[0].parsed);
-      done();
-    });
+test('json should be parsed', (t) => {
+  t.plan(1);
+  parseDir(fixture + 'users.json', (err, data) => {
+    t.equal(data[0].parsed, true);
   });
+});
 
-  it('should contain filepath', function(done) {
-    parseDir(fixture + 'users.json', function(err, data) {
-      assert(data[0].filepath.indexOf(fixture + 'users.json') !== -1);
-      done();
-    });
+test('json should contain filepath', (t) => {
+  t.plan(1);
+  parseDir(fixture + 'users.json', (err, data) => {
+    t.equal(data[0].filepath.indexOf(fixture + 'users.json') !== -1, true);
   });
+});
 
-  it('should contain filename', function(done) {
-    parseDir(fixture + 'users.json', function(err, data) {
-      assert(data[0].filename === 'users.json');
-      done();
-    });
+test('json should contain filename', (t) => {
+  t.plan(1);
+  parseDir(fixture + 'users.json', (err, data) => {
+    t.equal(data[0].filename, 'users.json');
   });
+});
 
-  it('should contain basename', function(done) {
-    parseDir(fixture + 'users.json', function(err, data) {
-      assert(data[0].basename === 'users');
-      done();
-    });
+test('json should contain basename', (t) => {
+  t.plan(1);
+  parseDir(fixture + 'users.json', (err, data) => {
+    t.equal(data[0].basename, 'users');
   });
+});
 
-  it('should contain extension', function(done) {
-    parseDir(fixture + 'users.json', function(err, data) {
-      assert(data[0].extension === '.json');
-      done();
-    });
+test('json should contain extension', (t) => {
+  t.plan(1);
+  parseDir(fixture + 'users.json', (err, data) => {
+    t.equal(data[0].extension, '.json');
   });
+});
 
-  it('should return raw output', function(done) {
-    parseDir(fixture + 'users.json', function(err, data) {
-      assert(data[0].raw === fs.readFileSync(fixture + 'users.json').toString());
-      done();
-    });
+test('json should return raw output', (t) => {
+  t.plan(1);
+  parseDir(fixture + 'users.json', (err, data) => {
+    t.equal(data[0].raw, fs.readFileSync(fixture + 'users.json').toString());
   });
+});
 
-  it('should return parsed output', function(done) {
-    parseDir(fixture + 'users.json', function(err, data) {
-      assert(data[0].contents[0].name === 'John');
-      done();
-    });
+test('json should return parsed output', (t) => {
+  t.plan(1);
+  parseDir(fixture + 'users.json', (err, data) => {
+    t.equal(data[0].contents[0].name, 'John');
   });
+});
 
-  it('should handle malformed json', function(done) {
-    parseDir(fixture + 'malformed.json', function(err, data) {
-      assert(!data[0].parsed);
-      done();
-    });
+test('json should handle malformed json', (t) => {
+  t.plan(1);
+  parseDir(fixture + 'malformed.json', (err, data) => {
+    t.equal(!data[0].parsed, true);
   });
 });
