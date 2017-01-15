@@ -1,65 +1,59 @@
+'use strict';
 const parseDir = require('../lib/parse-dir');
-const assert = require('assert');
+const test = require('tape');
 const fs = require('fs');
 
 const fixture = 'test/fixture/javascript/';
 
-describe('javascript', () => {
-  it('should be parsed', (done) => {
-    parseDir(`${fixture}users.js`, (err, data) => {
-      assert(data[0].parsed);
-      done();
-    });
+test('javascript should be parsed', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.js`, (err, data) => {
+    t.equal(data[0].parsed, true);
   });
+});
 
-  it('should contain filepath', (done) => {
-    parseDir(`${fixture}users.js`, (err, data) => {
-      assert(data[0].filepath.indexOf('fixture') !== -1);
-      assert(data[0].filepath.indexOf('javascript') !== -1);
-      assert(data[0].filepath.indexOf('test') !== -1);
-      done();
-    });
+test('javascript should contain filepath', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.js`, (err, data) => {
+    t.equal(data[0].filepath.indexOf(`${fixture}users.js`) !== -1, true);
   });
-  it('should contain filename', (done) => {
-    parseDir(`${fixture}users.js`, (err, data) => {
-      assert(data[0].filename === 'users.js');
-      done();
-    });
-  });
+});
 
-  it('should contain basename', (done) => {
-    parseDir(`${fixture}users.js`, (err, data) => {
-      assert(data[0].basename === 'users');
-      done();
-    });
+test('javascript should contain filename', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.js`, (err, data) => {
+    t.equal(data[0].filename, 'users.js');
   });
+});
 
-  it('should contain extension', (done) => {
-    parseDir(`${fixture}users.js`, (err, data) => {
-      assert(data[0].extension === '.js');
-      done();
-    });
+test('javascript should contain basename', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.js`, (err, data) => {
+    t.equal(data[0].basename, 'users');
   });
-
-  it('should return raw output', (done) => {
-    parseDir(`${fixture}users.js`, (err, data) => {
-      assert(data[0].raw === fs.readFileSync(`${fixture}/users.js`).toString());
-      done();
-    });
+});
+test('javascript should contain extension', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.js`, (err, data) => {
+    t.equal(data[0].extension, '.js');
   });
-
-  it('should return parsed output', (done) => {
-    parseDir(`${fixture}users.js`, (err, data) => {
-      assert(data[0].contents[0].name === 'John');
-      done();
-    });
+});
+test('javascript should return raw output', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.js`, (err, data) => {
+    t.equal(data[0].raw, fs.readFileSync(`${fixture}users.js`).toString());
   });
-
-  // Need to figure out a way to test this. Broken JS will just break everything and require just loads an empty object.
-  it.skip('should handle malformed js', (done) => {
-    parseDir(`${fixture}malformed.js`, (err, data) => {
-      assert(!data[0].parsed);
-      done();
-    });
+});
+test('javascript should return parsed output', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.js`, (err, data) => {
+    t.equal(data[0].contents[0].name, 'John');
+  });
+});
+// Need to figure out a way to test this. Broken JS will just break everything and require just loads an empty object.
+test.skip('javascript should handle malformed js', (t) => {
+  parseDir(fixture + 'malformed.js', (err, data) => {
+    t.equal(!data[0].parsed);
+    done();
   });
 });

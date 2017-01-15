@@ -1,66 +1,63 @@
+'use strict';
 const parseDir = require('../lib/parse-dir');
-const assert = require('assert');
+const test = require('tape');
 const fs = require('fs');
 
 const fixture = 'test/fixture/livescript/';
-describe('livescript', () => {
-  it.skip('should be parsed', (done) => {
-    parseDir(`${fixture}users.ls`, (err, data) => {
-      assert(data[0].parsed);
-      done();
-    });
-  });
 
-  it('should contain filepath', (done) => {
-    parseDir(`${fixture}users.ls`, (err, data) => {
-      assert(data[0].filepath.indexOf('users.ls') !== -1);
-      assert(data[0].filepath.indexOf('test') !== -1);
-      assert(data[0].filepath.indexOf('fixture') !== -1);
-      assert(data[0].filepath.indexOf('livescript') !== -1);
-      done();
-    });
+test.skip('livescript should be parsed', (t) => {
+  t.plan(1);//
+  parseDir(`${fixture}users.ls`, (err, data) => {
+    t.equal(data[0].parsed);
   });
+});
 
-  it('should contain filename', (done) => {
-    parseDir(`${fixture}users.ls`, (err, data) => {
-      assert(data[0].filename === 'users.ls');
-      done();
-    });
+test('livescript should contain filepath', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.ls`, (err, data) => {
+    t.equal(data[0].filepath.indexOf(`${fixture}users.ls`) !== -1, true);
   });
+});
 
-  it('should contain basename', (done) => {
-    parseDir(`${fixture}users.ls`, (err, data) => {
-      assert(data[0].basename === 'users');
-      done();
-    });
+test('livescript should contain filename', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.ls`, (err, data) => {
+    t.equal(data[0].filename, 'users.ls');
   });
+});
 
-  it('should contain extension', (done) => {
-    parseDir(`${fixture}users.ls`, (err, data) => {
-      assert(data[0].extension === '.ls');
-      done();
-    });
+test('livescript should contain basename', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.ls`, (err, data) => {
+    t.equal(data[0].basename, 'users');
   });
+});
 
-  it('should return raw output', (done) => {
-    parseDir(`${fixture}users.ls`, (err, data) => {
-      assert(data[0].raw === fs.readFileSync(`${fixture}users.ls`).toString());
-      done();
-    });
+test('livescript should contain extension', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.ls`, (err, data) => {
+    t.equal(data[0].extension, '.ls');
   });
+});
 
-  it.skip('should return parsed output', (done) => {
-    parseDir(`${fixture}users.ls`, (err, data) => {
-      assert(data[0].contents[0].name === 'John');
-      done();
-    });
+test('livescript should return raw output', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.ls`, (err, data) => {
+    t.equal(data[0].raw, fs.readFileSync(`${fixture}users.ls`).toString());
   });
+});
 
-  // Need to figure out a way to test this. Broken JS will just break everything and require just loads an empty object.
-  it.skip('should handle malformed livescript', (done) => {
-    parseDir(`${fixture}malformed.ls`, (err, data) => {
-      assert(!data[0].parsed);
-      done();
-    });
+test.skip('livescript should return parsed output', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.ls`, (err, data) => {
+    t.equal(data[0].contents[0].name, 'John');
+  });
+});
+
+// Need to figure out a way to test this. Broken JS will just break everything and require just loads an empty object.
+test.skip('livescript should handle malformed livescript', (t) => {
+  t.plan(1);
+  parseDir(fixture + 'malformed.ls', (err, data) => {
+    t.equal(!data[0].parsed);
   });
 });
