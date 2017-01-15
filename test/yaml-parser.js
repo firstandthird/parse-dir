@@ -1,65 +1,62 @@
+'use strict';
 const parseDir = require('../lib/parse-dir');
-const assert = require('assert');
+const test = require('tape');
 const fs = require('fs');
 
 const fixture = 'test/fixture/yaml/';
-describe('yaml', () => {
-  it('should be parsed', (done) => {
-    parseDir(`${fixture}users.yaml`, (err, data) => {
-      assert(data[0].parsed);
-      done();
-    });
-  });
 
-  it('should contain filepath', (done) => {
-    parseDir(`${fixture}users.yaml`, (err, data) => {
-      assert(data[0].filepath.indexOf('users.yaml') !== -1);
-      assert(data[0].filepath.indexOf('test') !== -1);
-      assert(data[0].filepath.indexOf('fixture') !== -1);
-      assert(data[0].filepath.indexOf('yaml') !== -1);
-      done();
-    });
+test('yaml should be parsed', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.yaml`, (err, data) => {
+    t.equal(data[0].parsed, true);
   });
+});
 
-  it('should contain filename', (done) => {
-    parseDir(`${fixture}users.yaml`, (err, data) => {
-      assert(data[0].filename === 'users.yaml');
-      done();
-    });
+test('yaml should contain filepath', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.yaml`, (err, data) => {
+    t.equal(data[0].filepath.indexOf(`${fixture}users.yaml`) !== -1, true);
   });
+});
 
-  it('should contain basename', (done) => {
-    parseDir(`${fixture}users.yaml`, (err, data) => {
-      assert(data[0].basename === 'users');
-      done();
-    });
+test('yaml should contain filename', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.yaml`, (err, data) => {
+    t.equal(data[0].filename, 'users.yaml');
   });
+});
 
-  it('should contain extension', (done) => {
-    parseDir(`${fixture}users.yaml`, (err, data) => {
-      assert(data[0].extension === '.yaml');
-      done();
-    });
+test('yaml should contain basename', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.yaml`, (err, data) => {
+    t.equal(data[0].basename, 'users');
   });
+});
 
-  it('should return raw output', (done) => {
-    parseDir(`${fixture}users.yaml`, (err, data) => {
-      assert(data[0].raw === fs.readFileSync(`${fixture}users.yaml`).toString());
-      done();
-    });
+test('yaml should contain extension', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.yaml`, (err, data) => {
+    t.equal(data[0].extension, '.yaml');
   });
+});
 
-  it('should return parsed output', (done) => {
-    parseDir(`${fixture}users.yaml`, (err, data) => {
-      assert(data[0].contents[0].name === 'John');
-      done();
-    });
+test('yaml should return raw output', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.yaml`, (err, data) => {
+    t.equal(data[0].raw, fs.readFileSync(`${fixture}users.yaml`).toString());
   });
+});
 
-  it('should handle malformed yaml', (done) => {
-    parseDir(`${fixture}malformed.yaml`, (err, data) => {
-      assert(!data[0].parsed);
-      done();
-    });
+test('yaml should return parsed output', (t) => {
+  t.plan(1);
+  parseDir(`${fixture}users.yaml`, (err, data) => {
+    t.equal(data[0].contents[0].name, 'John');
+  });
+});
+
+test('yaml should handle malformed yaml', (t) => {
+  t.plan(1);
+  parseDir(fixture + 'malformed.yaml', (err, data) => {
+    t.equal(!data[0].parsed, true);
   });
 });
