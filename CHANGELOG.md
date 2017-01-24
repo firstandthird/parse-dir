@@ -1,4 +1,12 @@
 
+1.0.0 / 2017-01-24
+==================
+
+  * mocha -> tape
+  * chore(package): update dependencies
+  * refactored parseDir to class
+  * converted to es6
+
 0.1.0 / 2016-02-15
 ==================
 
