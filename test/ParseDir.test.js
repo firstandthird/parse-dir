@@ -1,3 +1,4 @@
+'use strict';
 const ParseDir = require('../lib/ParseDir');
 const tape = require('tape');
 
