@@ -1,4 +1,4 @@
-const parseDir = require('../lib/parse-dir');
+const parseDir = require('../lib/index');
 const test = require('tape');
 const fs = require('fs');
 // registers coffeescript with 'require'
