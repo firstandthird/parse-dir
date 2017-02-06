@@ -87,6 +87,14 @@ tape('FileProcessor.processFile', (assert) => {
   const fp = new FileProcessor({});
   assert.equal(typeof fp.processFile, 'function');
   fp.processFile('test/fixture/directories/subdir/file.json', () => {
+    assert.ok(fp.data[0].relativePath);
+    assert.ok(fp.data[0].filepath);
+    assert.ok(fp.data[0].filename);
+    assert.ok(fp.data[0].basename);
+    assert.ok(fp.data[0].extension);
+    assert.ok(fp.data[0].parsed);
+    assert.ok(fp.data[0].raw);
+    assert.equal(fp.data[0].isDirectory, false);
     assert.equal(fp.data.length, 1);
     assert.equal(typeof fp.data[0].contents, 'object');
     assert.equal(fp.data[0].contents.test, 123);
