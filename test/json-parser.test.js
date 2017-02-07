@@ -2,7 +2,7 @@
 const parseDir = require('../lib/index');
 const test = require('tape');
 const fs = require('fs');
-
+const path = require('path');
 const fixture = 'test/fixture/json/';
 
 test('json should be parsed', (t) => {
@@ -15,7 +15,7 @@ test('json should be parsed', (t) => {
 test('json should contain filepath', (t) => {
   t.plan(1);
   parseDir(`${fixture}users.json`, (err, data) => {
-    t.equal(data[0].filepath.indexOf(`${fixture}users.json`) !== -1, true);
+    t.equal(data[0].filepath.indexOf(path.join(fixture, 'users.json')) !== -1, true);
   });
 });
 
