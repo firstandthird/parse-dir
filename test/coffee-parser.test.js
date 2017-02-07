@@ -1,6 +1,9 @@
-const parseDir = require('../lib/parse-dir');
+'use strict';
+const parseDir = require('../lib/index');
 const test = require('tape');
 const fs = require('fs');
+const path = require('path');
+
 // registers coffeescript with 'require'
 require('coffee-script/register');
 
@@ -16,7 +19,7 @@ test('coffeescript should be parsed', (t) => {
 test('coffeescript should contain filepath', function(t) {
   t.plan(1);
   parseDir(`${fixture}users.coffee`, (err, data) => {
-    t.equal(data[0].filepath.indexOf(`${fixture}users.coffee`) !== -1, true);
+    t.equal(data[0].filepath.indexOf(path.join(fixture, 'users.coffee')) !== -1, true);
   });
 });
 

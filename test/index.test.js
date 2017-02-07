@@ -1,5 +1,5 @@
 'use strict';
-const parseDir = require('../lib/parse-dir');
+const parseDir = require('../lib/index');
 const test = require('tape');
 
 test('parse-dir should be a function', (t) => {
