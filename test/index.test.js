@@ -6,6 +6,16 @@ test('parse-dir should be a function', (t) => {
   t.plan(1);
   t.equal(typeof parseDir, 'function');
 });
+
+test('parse-dir should handle one file', (t) => {
+  parseDir('test/fixture/javascript/users.js', (err, data) => {
+    t.equal(err, null);
+    t.equal(data.length, 1);
+    t.equal(data[0].parsed, true);
+    t.end();
+  });
+});
+
 test('parse-dir should handle multiple files', (t) => {
   t.plan(2);
   parseDir('test/fixture/**/*', (err, data) => {
