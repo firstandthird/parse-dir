@@ -18,24 +18,36 @@ test('parse-dir should handle one file', (t) => {
 
 test('parse-dir should handle multiple files', (t) => {
   t.plan(2);
-  parseDir('test/fixture/**/*', (err, data) => {
+  parseDir('test/fixture/multiple/*', (err, data) => {
     t.equal(err, null);
-    t.equal(data.length, 20);
+    t.equal(data.length, 4);
+  });
+});
+
+test('parse-dir should exit with err if any file cannot be parsed', (t) => {
+  parseDir('test/fixture/**/*', (err, data) => {
+    t.notEqual(err, null);
+    t.end();
   });
 });
 
 test('Should handle synchronous as well', (t) => {
   t.plan(1);
-  const result = parseDir.sync('test/fixture/**/*');
+  const result = parseDir.sync('test/fixture/multiple/*');
   t.equal(result.length > 1, true);
 });
 
+test('parse-dir should exit with err if any file cannot be parsed synchronously', (t) => {
+  t.plan(1);
+  const result = parseDir.sync('test/fixture/**/*');
+  t.equal(result instanceof Error, true);
+});
+
 test('parse-dir should return relative paths', (t) => {
-  t.plan(3);
-  parseDir('test/fixture/json/*.json', (err, data) => {
-    t.equal(data.length, 2);
-    t.equal(data[0].relativePath, 'test/fixture/json/malformed.json');
-    t.equal(data[1].relativePath, 'test/fixture/json/users.json');
+  t.plan(2);
+  parseDir('test/fixture/json/users.json', (err, data) => {
+    t.equal(data.length, 1);
+    t.equal(data[0].relativePath, 'test/fixture/json/users.json');
   });
 });
 
