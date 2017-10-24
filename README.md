@@ -3,6 +3,8 @@ parse-dir
 
 =========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/firstandthird/parse-dir.svg)](https://greenkeeper.io/)
+
 Node lib to recursively read the files in a directory and return their contents.
 
 ## Installation
