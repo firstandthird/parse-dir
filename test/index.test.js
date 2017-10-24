@@ -31,18 +31,6 @@ test('parse-dir should exit with err if any file cannot be parsed', (t) => {
   });
 });
 
-test('Should handle synchronous as well', (t) => {
-  t.plan(1);
-  const result = parseDir.sync('test/fixture/multiple/*');
-  t.equal(result.length > 1, true);
-});
-
-test('parse-dir should exit with err if any file cannot be parsed synchronously', (t) => {
-  t.plan(1);
-  const result = parseDir.sync('test/fixture/**/*');
-  t.equal(result instanceof Error, true);
-});
-
 test('parse-dir should return relative paths', (t) => {
   t.plan(2);
   parseDir('test/fixture/json/users.json', (err, data) => {
