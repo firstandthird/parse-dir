@@ -8,51 +8,20 @@ tape('can construct FileProcessor', (assert) => {
   assert.end();
 });
 
-tape('FileProcessor.determineIfDirectory', (assert) => {
-  const fp = new FileProcessor({});
-  assert.equal(typeof fp.determineIfDirectory, 'function');
-  fp.determineIfDirectory({
-    filepath: 'test'
-  }, false, (err, result) => {
-    assert.equal(err, null, 'does not error');
-    assert.equal(result, true, 'detects when a dir');
-    fp.determineIfDirectory({
-      filepath: 'test/FileProcessor.test.js'
-    }, false, (err2, result2) => {
-      assert.equal(err2, null, 'does not error');
-      assert.equal(result2, false, 'detects when not a dir');
-      assert.end();
-    });
-  });
-});
-
 tape('FileProcessor.determineIfDirectory async', (assert) => {
   const fp = new FileProcessor({});
   fp.determineIfDirectory({
     filepath: 'test'
-  }, true, (err, result) => {
+  }, (err, result) => {
     assert.equal(err, null, 'does not error');
     assert.equal(result, true, 'detects when a dir');
     fp.determineIfDirectory({
       filepath: 'test/FileProcessor.test.js'
-    }, true, (err2, result2) => {
+    }, (err2, result2) => {
       assert.equal(err2, null, 'does not error');
       assert.equal(result2, false, 'determines when not a director');
       assert.end();
     });
-  });
-});
-
-tape('FileProcessor.getFileContents', (assert) => {
-  const fp = new FileProcessor({});
-  assert.equal(typeof fp.getFileContents, 'function');
-  fp.getFileContents({
-    filepath: 'test/FileProcessor.test.js'
-  }, false, false, (err, result) => {
-    assert.equal(err, null, 'does not error');
-    assert.equal(typeof result, 'string', 'returns a string');
-    assert.equal(result.indexOf("tape('FileProcessor.getFileContents'") > -1, true, 'returns contents of file as a string');
-    assert.end();
   });
 });
 
@@ -61,7 +30,7 @@ tape('FileProcessor.getFileContents async', (assert) => {
   assert.equal(typeof fp.getFileContents, 'function');
   fp.getFileContents({
     filepath: 'test/FileProcessor.test.js'
-  }, true, false, (err, result) => {
+  }, false, (err, result) => {
     assert.equal(err, null, 'does not error');
     assert.equal(typeof result, 'string', 'returns a string');
     assert.equal(result.indexOf("tape('FileProcessor.getFileContents'") > -1, true, 'returns contents of file as a string');
