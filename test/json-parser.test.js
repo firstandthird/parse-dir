@@ -5,58 +5,53 @@ const fs = require('fs');
 const path = require('path');
 const fixture = 'test/fixture/json/';
 
-test('json should be parsed', (t) => {
+test('json should be parsed', async (t) => {
   t.plan(1);
-  parseDir(`${fixture}users.json`, (err, data) => {
-    t.equal(data[0].parsed, true);
-  });
+  const data = await parseDir(`${fixture}users.json`);
+  t.equal(data[0].parsed, true);
 });
 
-test('json should contain filepath', (t) => {
+test('json should contain filepath', async (t) => {
   t.plan(1);
-  parseDir(`${fixture}users.json`, (err, data) => {
-    t.equal(data[0].filepath.indexOf(path.join(fixture, 'users.json')) !== -1, true);
-  });
+  const data = await parseDir(`${fixture}users.json`);
+  t.equal(data[0].filepath.indexOf(path.join(fixture, 'users.json')) !== -1, true);
 });
 
-test('json should contain filename', (t) => {
+test('json should contain filename', async (t) => {
   t.plan(1);
-  parseDir(`${fixture}users.json`, (err, data) => {
-    t.equal(data[0].filename, 'users.json');
-  });
+  const data = await parseDir(`${fixture}users.json`);
+  t.equal(data[0].filename, 'users.json');
 });
 
-test('json should contain basename', (t) => {
+test('json should contain basename', async (t) => {
   t.plan(1);
-  parseDir(`${fixture}users.json`, (err, data) => {
-    t.equal(data[0].basename, 'users');
-  });
+  const data = await parseDir(`${fixture}users.json`);
+  t.equal(data[0].basename, 'users');
 });
 
-test('json should contain extension', (t) => {
+test('json should contain extension', async (t) => {
   t.plan(1);
-  parseDir(`${fixture}users.json`, (err, data) => {
-    t.equal(data[0].extension, '.json');
-  });
+  const data = await parseDir(`${fixture}users.json`);
+  t.equal(data[0].extension, '.json');
 });
 
-test('json should return raw output', (t) => {
+test('json should return raw output', async (t) => {
   t.plan(1);
-  parseDir(`${fixture}users.json`, (err, data) => {
-    t.equal(data[0].raw, fs.readFileSync(`${fixture}users.json`).toString());
-  });
+  const data = await parseDir(`${fixture}users.json`);
+  t.equal(data[0].raw, fs.readFileSync(`${fixture}users.json`).toString());
 });
 
-test('json should return parsed output', (t) => {
+test('json should return parsed output', async (t) => {
   t.plan(1);
-  parseDir(`${fixture}users.json`, (err, data) => {
-    t.equal(data[0].contents[0].name, 'John');
-  });
+  const data = await parseDir(`${fixture}users.json`);
+  t.equal(data[0].contents[0].name, 'John');
 });
 
-test('json should handle malformed json', (t) => {
+test('json should handle malformed json', async (t) => {
   t.plan(1);
-  parseDir(fixture + 'malformed.json', (err, data) => {
-    t.equal(!data[0].parsed, true);
-  });
+  try {
+    const data = await parseDir(fixture + 'malformed.json');
+  } catch (e) {
+    t.notEqual(e, null);
+  }
 });
