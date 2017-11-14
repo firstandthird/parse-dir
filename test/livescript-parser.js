@@ -16,9 +16,6 @@ test('livescript should contain filepath', async (t) => {
   try {
     const data = await parseDir(`${fixture}users.ls`);
   } catch (e) {
-    console.log('-')
-    console.log('-')
-    console.log(e)
     t.equal(data[0].filepath.indexOf(`${fixture}users.ls`) !== -1, true);
   }
 });
