@@ -8,10 +8,9 @@ tape('can construct ParseDir', (assert) => {
   assert.end();
 });
 
-tape('ParseDir.handleAsync', (assert) => {
+tape('ParseDir.handleAsync', async (assert) => {
   const pd = new ParseDir({});
   pd.handleAsync('test/fixture/json/users.json', (err, result) => {
-    assert.equal(err, null);
     assert.ok(result[0].relativePath, 'should extract required fields');
     assert.ok(result[0].filepath, 'should extract required fields');
     assert.ok(result[0].filename, 'should extract required fields');
