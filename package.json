@@ -1,6 +1,6 @@
 {
   "name": "parse-dir",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Node lib to recursively read the files in a directory and return their contents",
   "main": "./lib/index",
   "repository": {
